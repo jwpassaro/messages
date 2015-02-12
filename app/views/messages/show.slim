@@ -1,0 +1,19 @@
+h1 Post a Message
+
+- for message in @messages
+  p= message["message"]
+  p
+    | Posted by
+    strong<>= message["username"]
+    | on
+    strong<>= Time.parse(message["timestamp"]).strftime("%A, %b %d")
+  hr
+
+= form_tag
+  div
+    label for="username" Name:
+    input type="text" name="username" id="username"
+  br
+  textarea name="message" rows="8" cols="80"
+  br
+  button type="submit" Post comment
