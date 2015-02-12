@@ -1,12 +1,12 @@
 h1 Post a Message
 
 - for message in @messages
-  p= message["message"]
+  p= message.message
   p
     | Posted by
-    strong<>= message["username"]
+    strong<>= message.username
     | on
-    strong<>= Time.parse(message["timestamp"]).strftime("%A, %b %d")
+    strong<>= message.created_at.strftime("%I:%M:%S %p")
   hr
 
 = form_tag
