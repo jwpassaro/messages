@@ -7,6 +7,12 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(
       username: params[:username],
+      street: params[:street],
+      city: params[:city],
+      state: params[:state],
+      zip: params[:zip],
+      tel: params[:tel],
+      email: params[:email],
       message: params[:message]
       )
     if @message.save

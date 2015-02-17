@@ -1,14 +1,5 @@
 .container
   h1 Post a Message
-  - if @messages.present?
-    - for message in @messages
-      p= message.message
-      p
-        | Posted by
-        strong<>= message.username
-        | on
-        strong<>= message.created_at.strftime("%A, %d %b %Y %l:%M %p")
-  hr
 
   h2
 
@@ -19,14 +10,34 @@
         input.form-control type="text" name="username" id="username" value=@message.username
 
     .form-group
+      label.col-sm-2.control-label for="street" Street
+      .col-sm-10
+        input.form-control type="text" name="street" id="street" value=@message.street
+
+    .form-group
       label.col-sm-2.control-label for="city" City
       .col-sm-10
-        input.form-control type="text" name="city" id="city" value=@message.username
+        input.form-control type="text" name="city" id="city" value=@message.city
 
     .form-group
       label.col-sm-2.control-label for="state" State
       .col-sm-10
-        input.form-control type="text" name="state" id="state" value=@message.username
+        input.form-control type="text" name="state" id="state" value=@message.state
+
+    .form-group
+      label.col-sm-2.control-label for="zip" Zipcode
+      .col-sm-10
+        input.form-control type="text" class="zipcode" maxlength="5" name="zip" id="zip" value=@message.zipcode
+
+    .form-group
+      label.col-sm-2.control-label for="telephone" Telephone
+      .col-sm-10
+        input.form-control type="tel" name="usrtel" id="tel" value=@message.tel
+
+    .form-group
+      label.col-sm-2.control-label for="email" Email Address
+      .col-sm-10
+        input.form-control type="email" name="email" id="email" value=@message.email
 
     .form-group
       label.col-md-2.control-label for="message" Message
@@ -37,3 +48,22 @@
     .form-group
       .col-md-offset-2.col-md-10
         button.btn.btn-primary type="submit" Post comment
+
+    - if @message.errors.present?
+      .alert.alert-danger role="alert"
+        ul
+          - for error in @message.errors.full_messages
+            li=error
+
+    - if @messages.present?
+      - for message in @messages
+        / p= message.message
+        .well= simple_format message.message
+        p
+          | Posted by
+          strong<>= message.username
+          | on
+          strong<>= message.created_at.strftime("%b %d, %Y")
+          | at
+          strong<>= message.created_at.strftime("%I:%M:%S %p")
+    hr
