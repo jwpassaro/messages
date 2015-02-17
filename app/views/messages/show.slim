@@ -1,51 +1,39 @@
-h1 Post a Message
-- if @messages.present?
-  - for message in @messages
-    p= message.message
-    p
-      | Posted by
-      strong<>= message.username
-      | on
-      strong<>= message.created_at.strftime("%A, %d %b %Y %l:%M %p")
-    hr
+.container
+  h1 Post a Message
+  - if @messages.present?
+    - for message in @messages
+      p= message.message
+      p
+        | Posted by
+        strong<>= message.username
+        | on
+        strong<>= message.created_at.strftime("%A, %d %b %Y %l:%M %p")
+  hr
 
-/ =formclass="form-horizontal">
-/   <div class="form-group">
-/     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-/     <div class="col-sm-10">
-/       <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-/     </div>
-/   </div>
-/   <div class="form-group">
-/     <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-/     <div class="col-sm-10">
-/       <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-/     </div>
-/   </div>
-/   <div class="form-group">
-/     <div class="col-sm-offset-2 col-sm-10">
-/       <div class="checkbox">
-/         <label>
-/           <input type="checkbox"> Remember me
-/         </label>
-/       </div>
-/     </div>
-/   </div>
-/   <div class="form-group">
-/     <div class="col-sm-offset-2 col-sm-10">
-/       <button type="submit" class="btn btn-default">Sign in</button>
-/     </div>
-/   </div>
-/ </form>
-/ add fields street, city, state, zip, smail, phone
+  h2
 
+  = form_tag({}, class: 'form-horizontal')
+    .form-group
+      label.col-sm-2.control-label for="username" Name
+      .col-sm-10
+        input.form-control type="text" name="username" id="username" value=@message.username
 
-= form_tag
-  div
-    label for="username" Name:
-    input type="text" name="username" id="username" value=@message.username
-  br
-  textarea name="message" rows="8" cols="80"
-    = @message.message
-  br
-  button type="submit" Post comment
+    .form-group
+      label.col-sm-2.control-label for="city" City
+      .col-sm-10
+        input.form-control type="text" name="city" id="city" value=@message.username
+
+    .form-group
+      label.col-sm-2.control-label for="state" State
+      .col-sm-10
+        input.form-control type="text" name="state" id="state" value=@message.username
+
+    .form-group
+      label.col-md-2.control-label for="message" Message
+      .col-md-10
+        textarea.form-control name="message" rows="8" cols="80"
+          = @message.message
+
+    .form-group
+      .col-md-offset-2.col-md-10
+        button.btn.btn-primary type="submit" Post comment

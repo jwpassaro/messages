@@ -2,7 +2,13 @@ source 'https://rubygems.org'
 
 ruby "2.2.0"
 
+gem 'bundler', '>= 1.7.0'
+
 gem 'slim'
+
+gem 'rails-assets-bootstrap'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -45,7 +51,5 @@ group :development, :test do
   gem 'spring'
 
   gem 'rails_12factor', group: :production
-
-  gem 'rails-assets-bootstrap'
 
 end
